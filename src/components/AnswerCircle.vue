@@ -51,7 +51,7 @@ export default {
 .answer-circle {
   width: 180px;
   height: 180px;
-  background-color: #0c52a8;
+  background-color: rgba(12, 82, 168, 0.8);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -123,10 +123,11 @@ export default {
 
 .bubble {
   position: absolute;
-  background: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  opacity: 0;
   bottom: 0;
+  opacity: 0.6;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .bubble-1 {
