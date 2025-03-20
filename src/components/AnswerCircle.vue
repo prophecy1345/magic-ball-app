@@ -37,8 +37,6 @@ export default {
   },
   computed: {
     answerWords() {
-      console.log('answerText:', this.answerText);
-      console.log('showAnswer:', this.showAnswer);
       return this.answerText ? this.answerText.split(' ') : [];
     }
   }
