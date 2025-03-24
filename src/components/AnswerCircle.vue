@@ -18,29 +18,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AnswerCircle',
-  props: {
-    showAnswer: {
-      type: Boolean,
-      default: false
-    },
-    answerText: {
-      type: String,
-      default: ''
-    },
-    showBubbles: {
-      type: Boolean,
-      default: false
-    }
+<script setup>
+import { computed, defineProps } from 'vue';
+
+const props = defineProps({
+  showAnswer: {
+    type: Boolean,
+    default: false
   },
-  computed: {
-    answerWords() {
-      return this.answerText ? this.answerText.split(' ') : [];
-    }
+  answerText: {
+    type: String,
+    default: ''
+  },
+  showBubbles: {
+    type: Boolean,
+    default: false
   }
-};
+});
+
+const answerWords = computed(() => {
+  return props.answerText ? props.answerText.split(' ') : [];
+});
 </script>
 
 <style scoped>

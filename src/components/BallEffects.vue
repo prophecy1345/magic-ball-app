@@ -6,16 +6,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'BallEffects',
-  props: {
-    showMysticLight: {
-      type: Boolean,
-      default: false
-    }
+<script setup>
+import { defineProps } from 'vue';
+
+defineProps({
+  showMysticLight: {
+    type: Boolean,
+    default: false
   }
-};
+});
 </script>
 
 <style scoped>

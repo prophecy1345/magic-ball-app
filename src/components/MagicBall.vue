@@ -17,56 +17,49 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onUnmounted } from 'vue';
 import AnswerCircle from './AnswerCircle.vue';
 import BallEffects from './BallEffects.vue';
 import AnswerService from '../services/AnswerService';
 
-export default {
-  name: 'MagicBall',
-  components: {
-    AnswerCircle,
-    BallEffects
-  },
-  data() {
-    return {
-      isShaking: false,
-      showAnswer: false,
-      showMysticLight: false,
-      showBubbles: false,
-      currentAnswer: '',
-      shakingTimeout: null
-    };
-  },
-  methods: {
-    shakeBall() {
-      if (this.isShaking) return;
-      
-      this.showAnswer = false;
-      this.showMysticLight = false;
-      
-      this.isShaking = true;
-      this.showBubbles = true;
-      
-      this.currentAnswer = AnswerService.getRandomAnswer();
-      
-      this.shakingTimeout = setTimeout(() => {
-        this.isShaking = false;
-        this.showBubbles = false;
-        
-        this.showMysticLight = true;
-        this.showAnswer = true;
-        
-        setTimeout(() => {
-          this.showMysticLight = false;
-        }, 3000);
-      }, 1200);
-    }
-  },
-  beforeUnmount() {
-    if (this.shakingTimeout) clearTimeout(this.shakingTimeout);
-  }
+// Состояние компонента
+const isShaking = ref(false);
+const showAnswer = ref(false);
+const showMysticLight = ref(false);
+const showBubbles = ref(false);
+const currentAnswer = ref('');
+let shakingTimeout = null;
+
+// Метод для встряхивания шара
+const shakeBall = () => {
+  if (isShaking.value) return;
+  
+  showAnswer.value = false;
+  showMysticLight.value = false;
+  
+  isShaking.value = true;
+  showBubbles.value = true;
+  
+  currentAnswer.value = AnswerService.getRandomAnswer();
+  
+  shakingTimeout = setTimeout(() => {
+    isShaking.value = false;
+    showBubbles.value = false;
+    
+    showMysticLight.value = true;
+    showAnswer.value = true;
+    
+    setTimeout(() => {
+      showMysticLight.value = false;
+    }, 3000);
+  }, 1200);
 };
+
+// Очистка таймаутов при удалении компонента
+onUnmounted(() => {
+  if (shakingTimeout) clearTimeout(shakingTimeout);
+});
 </script>
 
 <style scoped>
