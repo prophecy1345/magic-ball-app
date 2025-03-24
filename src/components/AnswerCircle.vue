@@ -96,7 +96,6 @@ const answerWords = computed(() => {
   line-height: 1.4;
 }
 
-/* Стили для пузырьков */
 .bubbles-container {
   position: absolute;
   bottom: 0;

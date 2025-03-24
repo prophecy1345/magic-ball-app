@@ -23,7 +23,6 @@ import AnswerCircle from './AnswerCircle.vue';
 import BallEffects from './BallEffects.vue';
 import AnswerService from '../services/AnswerService';
 
-// Состояние компонента
 const isShaking = ref(false);
 const showAnswer = ref(false);
 const showMysticLight = ref(false);
@@ -31,7 +30,6 @@ const showBubbles = ref(false);
 const currentAnswer = ref('');
 let shakingTimeout = null;
 
-// Метод для встряхивания шара
 const shakeBall = () => {
   if (isShaking.value) return;
   
@@ -56,7 +54,6 @@ const shakeBall = () => {
   }, 1200);
 };
 
-// Очистка таймаутов при удалении компонента
 onUnmounted(() => {
   if (shakingTimeout) clearTimeout(shakingTimeout);
 });
